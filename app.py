@@ -12,7 +12,8 @@ def process_rna():
     data = request.json
     rna_sequence = data['rnaSequence']
     reconstructed_rna = rna_sequence[::-1]
-    return jsonify(reconstructedRNA=reconstructed_rna)
+    original_rna = ''.join(sorted(rna_sequence.split(',')))
+    return jsonify(reversedRNA=reversed_rna, originalRNA=original_rna)
 
 if __name__ == "__main__":
     app.run(debug=True)
