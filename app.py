@@ -11,9 +11,19 @@ def index():
 def process_rna():
     data = request.json
     rna_sequence = data['rnaSequence']
+    
     reconstructed_rna = rna_sequence[::-1]
-    original_rna = ''.join(sorted(rna_sequence.split(',')))
-    return jsonify(reversedRNA=reversed_rna, originalRNA=original_rna)
+    
+    return jsonify(reconstructedRNA=reconstructed_rna)
 
 if __name__ == "__main__":
     app.run(debug=True)
+@app.route("/process-rna", methods=["POST"])
+def process_rna():
+    data = request.json
+    rna_sequence = data['rnaSequence']
+
+    reversed_rna = rna_sequence[::-1]
+
+    original_rna = ''.join(sorted(rna_sequence.split(',')))
+    return jsonify(reversedRNA=reversed_rna, originalRNA=original_rna)
